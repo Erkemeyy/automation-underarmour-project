@@ -10,6 +10,6 @@ public class DiscountPopUpOnMensPageIsVisible extends BaseTest {
                 .openHomePageAndCloseCookiesBanner()
                 .getHeaderElements().clickOnButtonMenSection()
                 .checkIsRedirectToMensPage()
-                .verifyDiscountPopUpOnMensPage();
+                .applyToDiscountPopUpOnMensPage();
     }
 }

@@ -10,6 +10,6 @@ public class verifyMensProductsCount extends BaseTest {
                 .openHomePageAndCloseCookiesBanner()
                 .getHeaderElements().clickOnButtonMenSection()
                 .checkIsRedirectToMensPage()
-                .verifyDiscountPopUpOnMensPage();
+                .applyToDiscountPopUpOnMensPage();
     }
 }

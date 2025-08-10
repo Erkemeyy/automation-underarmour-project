@@ -2,8 +2,6 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.utils.ConfigProvider;
 
 import java.time.Duration;
+import java.util.List;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -101,6 +100,21 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             logger.error("Error while working with element");
             Assert.fail("Error while working with element");
+        }
+    }
+
+    public void checkProductsArePresent(List<WebElement> webElement) {
+        Assert.assertTrue("No products found on Men's page", webElement.size() > 0);
+        logger.info("There are " + (webElement.size() + 1)  + " products on this page");
+    }
+
+    public void checkCategoryList(List<WebElement> webElement){
+        Assert.assertFalse("No elements found for locator: " + webElement, webElement.isEmpty());
+
+        for (WebElement element : webElement) {
+            Assert.assertTrue("Element is not displayed: " + element.getText(),
+                    element.isDisplayed());
+            logger.info(element.getText() + " is displayed");
         }
     }
 

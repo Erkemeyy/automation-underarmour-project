@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.pages.elements.DiscountPopUp;
 import org.pages.elements.HeaderElements;
-import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -34,6 +33,12 @@ public class MensPage extends ParentPage {
     @FindBy(xpath = "//a[text()='Next']")
     private WebElement buttonNext;
 
+    @FindBy(xpath = "//a[@class='ProductTile_product-item-link__tSc19']")
+    private List<WebElement> productTitles;
+
+    @FindBy(xpath = "//section[@id='category-list']//a[@class='text-body font-semibold']")
+    private List<WebElement> mensPageCategoryList;
+
     public MensPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -51,25 +56,27 @@ public class MensPage extends ParentPage {
     }
 
     public MensPage checkIsRedirectToMensPage(){
-        waitABit(1);
+        //waitABit(1);
         checkUrl();
         checkTextInElement(mensHeaderOne, "Men");
         checkTextInElement(mensHeaderTwo, "Men's");
         for (WebElement element : productCarouselItems) {
 
             if (!element.isDisplayed()) {
-                System.out.println("Element not displayed: " + element.getText());
+                logger.info("Element not displayed: " + element.getText());
             }
             Assert.assertTrue("Element is not displayed: " + element.getText(),
                     element.isDisplayed());
             logger.info(element.getText() + " is displayed");
         }
         checkTextInElement(sortDropdown, "Now Trending");
+        checkProductsArePresent(productTitles);
+        checkCategoryList(mensPageCategoryList);
         return this;
 
     }
 
-    public MensPage verifyDiscountPopUpOnMensPage() {
+    public MensPage applyToDiscountPopUpOnMensPage() {
         boolean isPopUpVisible = false;
         int currnetPage = 1;
         while (!isPopUpVisible){
@@ -79,6 +86,7 @@ public class MensPage extends ParentPage {
                 isPopUpVisible = true;
                 getDiscountPopUp().acceptDiscountPopUp();
                 checkTextInElement(getDiscountPopUp().successTextForPopUpDiscount, "Check Your Texts");
+                webDriverWait10.until(ExpectedConditions.elementToBeClickable(getDiscountPopUp().buttonContinueShopping));
                 clickOnElement(getDiscountPopUp().buttonContinueShopping);
                 checkUrlWithParam(currnetPage);
 

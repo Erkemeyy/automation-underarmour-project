@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.pages.CommonActionsWithElements;
 import org.pages.HomePage;
 
+import static org.data.TestData.TEST_EMAIL_FOR_DISCOUNT_POPUP;
+import static org.data.TestData.TEST_PHONE_NUMBER_FOR_DISCOUNT_POPUP;
+
 public class DiscountPopUp extends CommonActionsWithElements {
     private Logger logger = Logger.getLogger(getClass());
 
@@ -51,8 +54,8 @@ public class DiscountPopUp extends CommonActionsWithElements {
     }
 
     public void acceptDiscountPopUp() {
-        enterTextIntoInputEmailPopUP("test_email@example.com");
-        enterTextIntoInputPhone("6625639481");
+        enterTextIntoInputEmailPopUP(TEST_EMAIL_FOR_DISCOUNT_POPUP);
+        enterTextIntoInputPhone(TEST_PHONE_NUMBER_FOR_DISCOUNT_POPUP);
         webDriverWait10.until(ExpectedConditions.visibilityOf(buttonSubscribeNow));
         clickOnElement(buttonSubscribeNow);
         logger.info("Discount pop-up was accepted");
