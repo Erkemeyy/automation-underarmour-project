@@ -47,7 +47,7 @@ public class MensPage extends ParentPage {
 
     @Override
     protected String getRelativeURL() {
-        return "c/mens/";
+        return "en-us/c/mens/";
     }
 
     public MensPage checkIsRedirectToMensPage(){

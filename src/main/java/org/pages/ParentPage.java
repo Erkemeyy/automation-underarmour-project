@@ -4,8 +4,17 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.utils.ConfigProvider;
 
+import java.net.URI;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 public abstract class ParentPage extends CommonActionsWithElements {
     protected String baseURL = ConfigProvider.configProperties.base_url();
+    protected String loginURL = ConfigProvider.configProperties.login_url();
     public ParentPage(WebDriver webDriver) {
        super(webDriver);
     }
@@ -25,4 +34,12 @@ public abstract class ParentPage extends CommonActionsWithElements {
                 , webDriver.getCurrentUrl()
         );
     }
+
+//    protected void checkUrlForLoginPage() {
+//        Assert.assertEquals("URL is not expected"
+//                , loginURL + getRelativeURL()
+//                , webDriver.getCurrentUrl()
+//        );
+//    }
+
 }

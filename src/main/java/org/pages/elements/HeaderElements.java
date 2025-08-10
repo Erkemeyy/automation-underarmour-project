@@ -6,9 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.CommonActionsWithElements;
+import org.pages.LoginPage;
 import org.pages.MensPage;
 
 import java.util.List;
+
+import static org.utils.Utils_Custom.waitABit;
 
 public class HeaderElements extends CommonActionsWithElements{
     private Logger logger = Logger.getLogger(getClass());
@@ -22,12 +25,16 @@ public class HeaderElements extends CommonActionsWithElements{
     @FindBy(xpath = "//div[@id='nav-bar']//a[contains(@class,'logo')]")
     private WebElement UALogo;
 
+    @FindBy(xpath="//button[@class='Button_btn__8I_Ow Button_btn__primary__7tg_G  HeaderUtility_header-account-link__UxE33']")
+    private WebElement buttonLogin;
+
     public HeaderElements(WebDriver webDriver) {
         super(webDriver);
     }
 
     public MensPage clickOnButtonMenSection() {
         clickOnElement(buttonMenSection);
+        waitABit(1);
         return new MensPage(webDriver);
     }
 
@@ -44,5 +51,10 @@ public class HeaderElements extends CommonActionsWithElements{
         }
 
         return this;
+    }
+
+    public LoginPage clickOnLoginButton() {
+        clickOnElement(buttonLogin);
+        return new LoginPage(webDriver);
     }
 }

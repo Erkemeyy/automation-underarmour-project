@@ -3,7 +3,7 @@ package org.homePageTest;
 import org.baseTest.BaseTest;
 import org.junit.Test;
 
-public class RedirectToHomePageTest extends BaseTest{
+public class RedirectToMensPageTest extends BaseTest{
 
     @Test
     public void testRedirectToMansPage(){

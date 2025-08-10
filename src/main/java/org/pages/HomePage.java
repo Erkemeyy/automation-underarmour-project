@@ -16,6 +16,9 @@ public class HomePage extends ParentPage{
     @FindBy(xpath = "//img[@alt='close icon']")
     private WebElement closeCookiesBanner;
 
+    @FindBy(xpath = "//button[@id='my-account-switcher']")
+    private WebElement buttonMyAccount;
+
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -23,7 +26,7 @@ public class HomePage extends ParentPage{
 
     @Override
     protected String getRelativeURL() {
-        return "/";
+        return "en-us/";
     }
 
     public HomePage openHomePageAndCloseCookiesBanner() {
@@ -35,5 +38,17 @@ public class HomePage extends ParentPage{
 
     public HeaderElements getHeaderElements() {
         return new HeaderElements(webDriver);
+    }
+
+    public HomePage checkIsRedirectToHomePage() {
+        checkUrl();
+        isElementDisplayed(buttonMyAccount);
+        getHeaderElements().checkAllHeaderElementsVisible();
+        return this;
+    }
+
+    public HomePage buttonMyAccountIsVisible() {
+        isElementDisplayed(buttonMyAccount);
+        return this;
     }
 }
