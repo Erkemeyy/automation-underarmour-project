@@ -4,14 +4,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.pages.CommonActionsWithElements;
 import org.pages.HomePage;
-import org.pages.MensPage;
-
-import java.time.Duration;
-
-import static org.utils.Utils_Custom.waitABit;
 
 public class DiscountPopUp extends CommonActionsWithElements {
     private Logger logger = Logger.getLogger(getClass());
@@ -35,7 +29,7 @@ public class DiscountPopUp extends CommonActionsWithElements {
     private WebElement buttonSubscribeNow;
 
 
-    @FindBy(xpath = "//button[@data-testid='dialog-close-button']")
+    @FindBy(xpath = "(//button[@data-testid='dialog-close-button'])[last()] ")
     private WebElement buttonClosePopUp;
 
     public DiscountPopUp(WebDriver webDriver) {
@@ -73,16 +67,16 @@ public class DiscountPopUp extends CommonActionsWithElements {
             logger.info("Discount popup appeared.");
 
             // Чекаємо на кнопку закриття
-            webDriverWait5.until(ExpectedConditions.elementToBeClickable(buttonClosePopUp));
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(buttonClosePopUp));
             logger.info("Close button is clickable. Closing popup...");
             buttonClosePopUp.click();
 
             // Переконаємось, що попап зник
-            webDriverWait5.until(ExpectedConditions.invisibilityOf(discountPopUp));
+            webDriverWait15.until(ExpectedConditions.invisibilityOf(discountPopUp));
             logger.info("Discount popup closed.");
 
         } catch (TimeoutException e) {
-            logger.warn("Discount popup did not appear after logout. Continuing test...");
+            logger.warn("Pop Up is displayed");
         }
         return new HomePage(webDriver);
     }

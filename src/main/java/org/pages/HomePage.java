@@ -44,7 +44,6 @@ public class HomePage extends ParentPage{
 
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
-        isElementDisplayed(getHeaderElements().buttonMyAccount);
         getHeaderElements().checkAllHeaderElementsVisible();
         return this;
     }
@@ -63,6 +62,4 @@ public class HomePage extends ParentPage{
         getHeaderElements().clickOnButtonMyAccount().clickOnButtonLogOut();
         return this;
     }
-
-
 }

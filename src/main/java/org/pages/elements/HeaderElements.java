@@ -9,9 +9,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.pages.CommonActionsWithElements;
 import org.pages.LoginPage;
 import org.pages.MensPage;
+import org.pages.SearchResultsPage;
 
 import java.util.List;
 
+import static org.data.TestData.INPUT_TEXT_FOR_SEARCH;
 import static org.utils.Utils_Custom.waitABit;
 
 public class HeaderElements extends CommonActionsWithElements{
@@ -24,7 +26,7 @@ public class HeaderElements extends CommonActionsWithElements{
     private List<WebElement> headerLinks;
 
     @FindBy(xpath = "//div[@id='nav-bar']//a[contains(@class,'logo')]")
-    private WebElement UALogo;
+    public WebElement UALogo;
 
     @FindBy(xpath="//button[@class='Button_btn__8I_Ow Button_btn__primary__7tg_G  HeaderUtility_header-account-link__UxE33']")
     public WebElement buttonLogin;
@@ -36,13 +38,36 @@ public class HeaderElements extends CommonActionsWithElements{
     private WebElement buttonLogOut;
 
     @FindBy(xpath = "//div[contains(@class,'Header_desktop')]//input[@id='search-input']")
-    private WebElement inputSearch;
+    public WebElement inputSearch;
 
     @FindBy(xpath = "//a[@class='Header_nav-icon-button__oA_oE Header_nav-icon-favorites__UpEd_']")
     private WebElement buttonLikedProducts;
 
     @FindBy(xpath = "//div[contains(@class,'Header_desktop')]//a[@id='shopping-bag']")
     private WebElement buttonShoppingBag;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh')]//h2[@class='SearchSuggestionResults_section-title__BlmuZ']")
+    private WebElement searchSuggestionsHeader;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh')]//a[@data-testid='see-all-results']")
+    private WebElement buttonSeeAllResults;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh')]//h2[contains(@class, 'ZeroStateContent_section-title__iOOjT')]")
+    private WebElement headerTrendingSearch;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh')]//h2[text()='Popular products']")
+    private WebElement headerPopularProducts;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh')]//a[@class='ZeroStateContent_search-link__AKmUx']")
+    private List<WebElement> popularSections;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh')]//div[@class='ZeroStateContent_product-item__K9P6X']")
+    private List<WebElement> popularProductsInSearchBar;
+
+    @FindBy(xpath = "//div[contains(@class, 'SearchBar_search-flyout__K7Kiu')]//div[@class='SearchSuggestionResults_product-item__KQf_e']")
+    public List<WebElement> suggestedProductsInSearchBar;
+
+
 
     public HeaderElements(WebDriver webDriver) {
         super(webDriver);
@@ -86,4 +111,52 @@ public class HeaderElements extends CommonActionsWithElements{
         clickOnElement(buttonLogOut);
         return this;
     }
+
+    public HeaderElements clickOnInputSearch() {
+        clickOnElement(inputSearch);
+        return this;
+    }
+
+
+    public HeaderElements searchForSpecificProduct() {
+        clearAndEnterTextToElement(inputSearch, INPUT_TEXT_FOR_SEARCH);
+        webDriverWait15.until(ExpectedConditions.elementToBeClickable(searchSuggestionsHeader));
+        checkTextInElement(searchSuggestionsHeader, "Top Products");
+        checkIsElementDisplayed(buttonSeeAllResults);
+
+        return this;
+    }
+
+    public SearchResultsPage checkDefaultSearchBar() {
+        checkTextInElement(headerTrendingSearch, "Trending Searches");
+        //checkTextInElement(headerPopularProducts, "Popular Products");
+        checkIsPopularSectionsDisplayed();
+        checkIsElementsDisplayedInSearch(popularProductsInSearchBar);
+        searchForSpecificProduct();
+        checkIsElementsDisplayedInSearch(suggestedProductsInSearchBar);
+        clickOnElement(buttonSeeAllResults);
+
+        return new SearchResultsPage(webDriver);
+    }
+
+    private void checkIsPopularSectionsDisplayed() {
+
+        Assert.assertFalse("Popular sections list is empty!", popularSections.isEmpty());
+        for (WebElement section : popularSections) {
+            Assert.assertTrue("Popular section is not displayed: " + section.getText(),
+                    section.isDisplayed());
+        }
+        logger.info("All popular sections are displayed. Count: " + popularSections.size());
+
+    }
+
+    public void checkIsElementsDisplayedInSearch(List<WebElement> webElement) {
+        Assert.assertFalse("Elements list is empty for locator: " + webElement, webElement.isEmpty());
+        for (WebElement el : webElement) {
+            Assert.assertTrue("Element is not displayed: " + el.getText(), el.isDisplayed());
+        }
+        logger.info("All elements for locator are displayed. Count: " + webElement.size());
+    }
+
+
 }

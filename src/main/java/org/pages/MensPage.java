@@ -29,7 +29,7 @@ public class MensPage extends ParentPage {
     private List<WebElement> allProductLinks;
 
     @FindBy(xpath = "//span[text()='Now Trending']")
-    private WebElement sortDropdown;
+    public WebElement sortDropdown;
 
     @FindBy(xpath = "//a[text()='Next']")
     private WebElement buttonNext;
@@ -74,7 +74,7 @@ public class MensPage extends ParentPage {
         int currnetPage = 1;
         while (!isPopUpVisible){
             waitABit(3);
-            if (getDiscountPopUp().isDiscountPopUpVisible()){
+            if (getDiscountPopUp().isDiscountPopUpVisible() && currnetPage == 2){
                 checkTextInElement(getDiscountPopUp().discountPopUp, "Get 15% Off^");
                 isPopUpVisible = true;
                 getDiscountPopUp().acceptDiscountPopUp();

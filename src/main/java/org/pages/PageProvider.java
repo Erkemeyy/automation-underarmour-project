@@ -17,5 +17,11 @@ public class PageProvider {
         return new LoginPage(webDriver);
     }
 
+    public SearchResultsPage getSearchResultsPage(){
+        return new SearchResultsPage(webDriver);
+    }
+
+
+
 
 }
