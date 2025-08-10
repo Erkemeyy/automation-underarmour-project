@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.pages.elements.DiscountPopUp;
 import org.pages.elements.HeaderElements;
 
 public class HomePage extends ParentPage{
@@ -15,9 +17,6 @@ public class HomePage extends ParentPage{
 
     @FindBy(xpath = "//img[@alt='close icon']")
     private WebElement closeCookiesBanner;
-
-    @FindBy(xpath = "//button[@id='my-account-switcher']")
-    private WebElement buttonMyAccount;
 
 
     public HomePage(WebDriver webDriver) {
@@ -39,16 +38,31 @@ public class HomePage extends ParentPage{
     public HeaderElements getHeaderElements() {
         return new HeaderElements(webDriver);
     }
+    public DiscountPopUp getDiscountPopUp() {
+        return new DiscountPopUp(webDriver);
+    }
 
     public HomePage checkIsRedirectToHomePage() {
         checkUrl();
-        isElementDisplayed(buttonMyAccount);
+        isElementDisplayed(getHeaderElements().buttonMyAccount);
         getHeaderElements().checkAllHeaderElementsVisible();
         return this;
     }
 
     public HomePage buttonMyAccountIsVisible() {
-        isElementDisplayed(buttonMyAccount);
+        isElementDisplayed(getHeaderElements().buttonMyAccount);
         return this;
     }
+
+    public HomePage buttonLoginIsVisible() {
+        isElementDisplayed(getHeaderElements().buttonLogin);
+        return this;
+    }
+
+    public HomePage logOutFromAccount() {
+        getHeaderElements().clickOnButtonMyAccount().clickOnButtonLogOut();
+        return this;
+    }
+
+
 }

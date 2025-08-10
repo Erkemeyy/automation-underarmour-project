@@ -3,9 +3,12 @@ package org.pages;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.net.URI;
 import java.net.URLDecoder;
@@ -28,6 +31,11 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement buttonLogin;
 
+    @FindBy(xpath ="//h3[text()='Please wait, logging you in...']")
+    private By loginLoader;
+
+    private static final By LOGIN_LOADER = By.xpath("//h3[normalize-space()='Please wait, logging you in...']");
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -42,7 +50,15 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputEmailAddress(emailForLogin);
         enterTextIntoInputPassword(passwordForLogin);
         clickOnElement(buttonLogin);
-        waitABit(10);
+        try {
+            webDriverWait10.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_LOADER));
+            logger.info("Login loader appeared");
+        } catch (TimeoutException e) {
+            logger.warn("Login loader did not appear, continuing...");
+        }
+
+       webDriverWait10.until(ExpectedConditions.invisibilityOfElementLocated(LOGIN_LOADER));
+        logger.info("Login loader disappeared, proceeding...");
         return this;
     }
 

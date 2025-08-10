@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.pages.CommonActionsWithElements;
 import org.pages.LoginPage;
 import org.pages.MensPage;
@@ -26,7 +27,22 @@ public class HeaderElements extends CommonActionsWithElements{
     private WebElement UALogo;
 
     @FindBy(xpath="//button[@class='Button_btn__8I_Ow Button_btn__primary__7tg_G  HeaderUtility_header-account-link__UxE33']")
-    private WebElement buttonLogin;
+    public WebElement buttonLogin;
+
+    @FindBy(xpath = "//button[@id='my-account-switcher']")
+    public WebElement buttonMyAccount;
+
+    @FindBy(xpath = "//div[contains(@class,'UserDropMenu')]//button[@data-testid='logout-button']")
+    private WebElement buttonLogOut;
+
+    @FindBy(xpath = "//div[contains(@class,'Header_desktop')]//input[@id='search-input']")
+    private WebElement inputSearch;
+
+    @FindBy(xpath = "//a[@class='Header_nav-icon-button__oA_oE Header_nav-icon-favorites__UpEd_']")
+    private WebElement buttonLikedProducts;
+
+    @FindBy(xpath = "//div[contains(@class,'Header_desktop')]//a[@id='shopping-bag']")
+    private WebElement buttonShoppingBag;
 
     public HeaderElements(WebDriver webDriver) {
         super(webDriver);
@@ -40,6 +56,9 @@ public class HeaderElements extends CommonActionsWithElements{
 
     public HeaderElements checkAllHeaderElementsVisible() {
         checkIsElementDisplayed(UALogo);
+        checkIsElementDisplayed(inputSearch);
+        checkIsElementDisplayed(buttonLikedProducts);
+        checkIsElementDisplayed(buttonShoppingBag);
         for (WebElement element : headerLinks) {
 
             if (!element.isDisplayed()) {
@@ -56,5 +75,15 @@ public class HeaderElements extends CommonActionsWithElements{
     public LoginPage clickOnLoginButton() {
         clickOnElement(buttonLogin);
         return new LoginPage(webDriver);
+    }
+
+    public HeaderElements clickOnButtonMyAccount() {
+        clickOnElement(buttonMyAccount);
+        return this;
+    }
+
+    public HeaderElements clickOnButtonLogOut() {
+        clickOnElement(buttonLogOut);
+        return this;
     }
 }

@@ -1,14 +1,12 @@
 package org.pages.elements;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.pages.CommonActionsWithElements;
+import org.pages.HomePage;
 import org.pages.MensPage;
 
 import java.time.Duration;
@@ -37,8 +35,8 @@ public class DiscountPopUp extends CommonActionsWithElements {
     private WebElement buttonSubscribeNow;
 
 
-//    @FindBy(xpath = "//button[@data-testid='dialog-close-button']")
-//    private WebElement buttonClosePopUp;
+    @FindBy(xpath = "//button[@data-testid='dialog-close-button']")
+    private WebElement buttonClosePopUp;
 
     public DiscountPopUp(WebDriver webDriver) {
         super(webDriver);
@@ -65,5 +63,27 @@ public class DiscountPopUp extends CommonActionsWithElements {
         clickOnElement(buttonSubscribeNow);
         logger.info("Discount pop-up was accepted");
 
+    }
+
+    public HomePage waitAndCloseDiscountPopUpAfterLogout() {
+        logger.info("Waiting up to 15 seconds for discount popup...");
+
+        try {
+            webDriverWait15.until(ExpectedConditions.visibilityOf(discountPopUp));
+            logger.info("Discount popup appeared.");
+
+            // Чекаємо на кнопку закриття
+            webDriverWait5.until(ExpectedConditions.elementToBeClickable(buttonClosePopUp));
+            logger.info("Close button is clickable. Closing popup...");
+            buttonClosePopUp.click();
+
+            // Переконаємось, що попап зник
+            webDriverWait5.until(ExpectedConditions.invisibilityOf(discountPopUp));
+            logger.info("Discount popup closed.");
+
+        } catch (TimeoutException e) {
+            logger.warn("Discount popup did not appear after logout. Continuing test...");
+        }
+        return new HomePage(webDriver);
     }
 }

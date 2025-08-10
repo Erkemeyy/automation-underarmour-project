@@ -17,11 +17,12 @@ import java.time.Duration;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
-    protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected WebDriverWait webDriverWait5, webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);//
+        PageFactory.initElements(webDriver, this);
+        webDriverWait5 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_IMPLICIT_WAIT()));
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
@@ -63,7 +64,7 @@ public class CommonActionsWithElements {
     }
 
     protected void checkIsElementDisplayed(WebElement webElement) {
-        Assert.assertTrue("Element is not displayed", isElementDisplayed(webElement));
+        Assert.assertTrue("Element is not displayed: " + webElement.getText(), isElementDisplayed(webElement));
     }
 
     protected void checkIsElementIsNotDisplayed(WebElement webElement) {

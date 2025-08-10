@@ -17,7 +17,7 @@
 
 
 #4
-//div[@class='Header_navBar__YM_ii Header_desktop-nav-bar__D3MxQ']//input[@id='search-input'] - поле для пошуку
+//div[contains(@class, 'Header_desktop')]//input[@id='search-input'] - поле для пошуку
 //h2[text()='Popular products'] - текст популярних продуктів після натискання
 //div[@class='SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh']//div[@class='ZeroStateContent_suggested-products__7SQRB'] - блок з популярними продуктами
 //div[@class='SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh']//h2[text()='Top Products'] - текст топових продуктів після вводу потрібного продукту
