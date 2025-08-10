@@ -1,0 +1,30 @@
+#1
+//a[@href='/en-us/t/halo-collection/']
+
+
+#2
+//button[@class='Button_btn__8I_Ow Button_btn__primary__7tg_G  HeaderUtility_header-account-link__UxE33']
+//input[@autocomplete='username']
+//input[@autocomplete='current-password']
+//button[@type='submit']
+
+
+
+#3
+//button[@id='my-account-switcher']
+//button[@class='Button_btn__8I_Ow Button_btn__primary__7tg_G  AccountNavLinks_logout__4yXmv']
+//button[@class='Button_btn__8I_Ow Button_btn__primary__7tg_G  HeaderUtility_header-account-link__UxE33 HeaderUtility_header-account-link-register__0qRc_']
+
+
+#4
+//div[@class='Header_navBar__YM_ii Header_desktop-nav-bar__D3MxQ']//input[@id='search-input'] - поле для пошуку
+//h2[text()='Popular products'] - текст популярних продуктів після натискання
+//div[@class='SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh']//div[@class='ZeroStateContent_suggested-products__7SQRB'] - блок з популярними продуктами
+//div[@class='SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh']//h2[text()='Top Products'] - текст топових продуктів після вводу потрібного продукту
+//div[@class='SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh']//a[@class='SearchSuggestionResults_see-all__LKt9d'] - кнопка "See All Results"
+//div[@class='SearchBar_search-panel__WGh8A SearchBar_search-panel-open__lpUs3 SearchBar_zero-search-panel__mdXUh']//div[@class='SearchSuggestionResults_product-item__KQf_e'] - кожен продукт зі спску Top products
+//div[@class='ProductRefinements_product-refinements__7bv8o'] - бокова панель з фільтрами
+//div[text()="Search Results"] - текст "Search Results" на сторінці результатів пошуку
+//h1[text()='"gloves"'] - заголовок з назвою продукту, який ми шукали
+//div[@class='products_list ProductGrid_product-listing__4rYJQ'] - елемент зі списком всіх продуктів
+//div[@id='product-1381943-100-LG-FPP'] - перший продукт зі списку, який ми шукали

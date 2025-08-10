@@ -1,0 +1,82 @@
+#01 User is able to click on the "Shop Now" button
+
+Precondition:
+-
+
+Steps:
+1. Open https://www.underarmour.com/en-us/
+2. Click on the "Shop Now" button
+
+Postcondition:
+-
+
+Expected Result:
+1. User is redirected to the page with the Halo Collection
+
+
+#02 User is able to successfully login
+Preconditions:
+1. Create user
+
+
+Steps:
+1. Open login page https://www.underarmour.com/en-us/login
+2. Enter <login> into input email on Login page
+3. Enter <password> into input password on Login page
+4. Click on button Sign In on Login page
+
+Expected Result:
+1. Redirect to the Home page
+2. The name of Login button in the header changes to "My Account"
+
+Post condition:
+Sign Out user (if logged in)
+
+
+#03 User is able to successfully logout
+
+Preconditions:
+1. User is logged in
+
+Steps:
+1. Click on the "Account" button in the header
+2. Click on the "Sign Out" button in the dropdown menu
+
+Expected Result:
+1. User is redirected to the Home page and logged out
+
+
+#04 User is able to search for a product
+Preconditions:
+1. User is logged in or as a guest
+2. Product exists
+
+Steps:
+1. Open home page https://www.underarmour.com/en-us
+3. Input <productName> into search input
+4. Click on "See All Results" button
+
+Expected Result:
+1. Search bar is displayed
+2. User is able to input text into the search bar
+3. Search bar is changed after inputting text
+4. User is redirected to the Search Results page
+
+
+
+#05 User is able to add item to the cart item after searching for it
+
+Preconditions:
+1. User is logged in or as a guest
+2. Product gloves exists and is purchasable.
+
+Steps:
+1. Open home page https://www.underarmour.com/en-us
+2. Use search to find <productName>
+3. pen first product on Search Results page
+4. On PDP select size <size> (and color <color> if applicable)
+5. Click Add to Cart
+
+Expected Result:
+
+
