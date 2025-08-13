@@ -56,7 +56,7 @@ public class MensPage extends ParentPage {
     }
 
     public MensPage checkIsRedirectToMensPage(){
-        //waitABit(1);
+        getDiscountPopUp().waitAndCloseDiscountPopUpAfterLogout();
         checkUrl();
         checkIsElementDisplayed(mensPageBreadcrumbs);
         checkTextInElement(mensPageHeader, "Men's");
@@ -79,22 +79,23 @@ public class MensPage extends ParentPage {
     public MensPage applyToDiscountPopUpOnMensPage() {
         boolean isPopUpVisible = false;
         int currnetPage = 1;
+        webDriverWait15.until(ExpectedConditions.visibilityOf(getDiscountPopUp().discountPopUp));
+        logger.info("Discount popup appeared.");
         while (!isPopUpVisible){
             waitABit(3);
-            if (getDiscountPopUp().isDiscountPopUpVisible() && currnetPage == 2){
+            if (getDiscountPopUp().isDiscountPopUpVisible()){
                 checkTextInElement(getDiscountPopUp().discountPopUp, "Get 15% Off^");
                 isPopUpVisible = true;
                 getDiscountPopUp().acceptDiscountPopUp();
                 checkTextInElement(getDiscountPopUp().successTextForPopUpDiscount, "Check Your Texts");
                 webDriverWait10.until(ExpectedConditions.elementToBeClickable(getDiscountPopUp().buttonContinueShopping));
                 clickOnElement(getDiscountPopUp().buttonContinueShopping);
-                checkUrlWithParam(currnetPage);
+                checkUrl();
 
                 break;
             }
             currnetPage++;
             scrollToElement(buttonNext);
-            clickOnElement(buttonNext);
         }
 
         return this;

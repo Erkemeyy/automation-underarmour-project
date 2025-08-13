@@ -6,10 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.pages.CommonActionsWithElements;
-import org.pages.LoginPage;
-import org.pages.MensPage;
-import org.pages.SearchResultsPage;
+import org.pages.*;
 
 import java.util.List;
 
@@ -73,9 +70,13 @@ public class HeaderElements extends CommonActionsWithElements{
         super(webDriver);
     }
 
+    public DiscountPopUp getDiscountPopUp() {
+        return new DiscountPopUp(webDriver);
+    }
+
     public MensPage clickOnButtonMenSection() {
+        waitABit(5);
         clickOnElement(buttonMenSection);
-        waitABit(1);
         return new MensPage(webDriver);
     }
 
@@ -159,4 +160,8 @@ public class HeaderElements extends CommonActionsWithElements{
     }
 
 
+    public HeaderElements clickOnHomePageIcon() {
+        clickOnElement(UALogo);
+        return this;
+    }
 }

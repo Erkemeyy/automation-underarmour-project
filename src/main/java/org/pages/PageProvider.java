@@ -13,6 +13,10 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
+    public MensPage getMensPage() {
+        return new MensPage(webDriver);
+    }
+
     public LoginPage getLoginPage() {
         return new LoginPage(webDriver);
     }
@@ -28,6 +32,16 @@ public class PageProvider {
     public ProductDetailPage getProductDetailPage(){
         return new ProductDetailPage(webDriver);
     }
+
+    public CartPage getCartPage(){
+        return new CartPage(webDriver);
+    }
+
+    public HaloPage getHaloPage(){
+        return new HaloPage(webDriver);
+    }
+
+
 
 
 

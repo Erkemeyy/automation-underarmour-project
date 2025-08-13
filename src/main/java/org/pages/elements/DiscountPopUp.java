@@ -79,7 +79,7 @@ public class DiscountPopUp extends CommonActionsWithElements {
             logger.info("Discount popup closed.");
 
         } catch (TimeoutException e) {
-            logger.warn("Pop Up is displayed");
+            logger.warn("Pop Up is not displayed");
         }
         return new HomePage(webDriver);
     }

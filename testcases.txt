@@ -1,82 +1,179 @@
-#01 User is able to click on the "Shop Now" button
+#01 Apply discount pop-up on Men’s page
 
-Precondition:
--
+Preconditions:
+
+* The user is not logged in.
+* Cache/cookies allow the display of the cookies banner and discount pop-up.
 
 Steps:
-1. Open https://www.underarmour.com/en-us/
-2. Click on the "Shop Now" button
+
+1. Open [https://www.underarmour.com/en-us/](https://www.underarmour.com/en-us/)
+2. Close the cookies banner.
+3. Click Men in the header.
+4. Wait for the discount pop-up to appear on the Men's page and click Apply / Shop Now / Get Offer (the button that applies the discount).
+5. Check the redirect to the Men's page.
+
+Expected Result:
+
+1. The user is taken to the Men's page; the URL corresponds to the Men section.
+2. The discount pop-up is applied/closed; the page is available for interaction (product cards/navigation are visible).
 
 Postcondition:
--
+
+1. Click on the Home icon in the header to return to the home page.
+2. If a discount pop-up appears after returning, wait for it to close.
+3. Make sure that the Log In button is displayed on the home page.
+
+
+
+#02 Redirect to Men’s page & header visibility
+
+Preconditions:
+
+* The user is not logged in.
+* The cookies banner may appear.
+
+Steps:
+
+1. Open [https://www.underarmour.com/en-us/](https://www.underarmour.com/en-us/)
+2. Close the cookies banner.
+3. Click Men in the header.
+4. Make sure that the transition to the Men’s page is complete.
+5. Check that all key header elements are visible (logo/Home, search, favorites, shopping cart, navigation links, etc.).
 
 Expected Result:
-1. User is redirected to the page with the Halo Collection
+
+1. The user is successfully redirected to the Men’s page (URL contains `/en-us/c/mens/`).
+2. All expected elements are displayed in the header (navigation and utilities are available for interaction).
+
+Postcondition:
+
+* Click on the Home icon to return to the home page.
+* If a discount pop-up appears, wait for it to close.
+* Check that the Log In button is displayed on the home page.
 
 
-#02 User is able to successfully login
+
+#03 Verify New Collection block and redirect to Halo Collection page
+
 Preconditions:
-1. Create user
+
+* The user is not logged in.
+* A cookie banner may appear.
+* A block with the new collection (New Collection) is displayed on the home page.
+
+Steps:
+
+1. Open [https://www.underarmour.com/en-us/](https://www.underarmour.com/en-us/)
+2. Close the cookie banner, if it appears.
+3. Verify that you are redirected to the home page (URL `/en-us/`).
+4. Find the New Collection section on the page.
+5. Make sure that all key elements of the new collection block are displayed (image, title, description, Shop Now button).
+6. Click the Shop Now button.
+7. Check that you are redirected to the Halo Collection page (URL `/en-us/t/halo-collection/`).
+
+Expected Result:
+
+1. The New Collection block is present and all its elements are displayed.
+2. After clicking on Shop Now, the user is redirected to the Halo Collection page.
+
+Postcondition:
+
+* Click the Home icon to return to the home page.
+* If a discount pop-up appears, wait for it to close.
+* Check that the Log In button is displayed.
+
+
+
+#04 Log in with test credentials and see “My Account”
+
+Preconditions:
+
+* The user is not logged in.
 
 
 Steps:
-1. Open login page https://www.underarmour.com/en-us/login
-2. Enter <login> into input email on Login page
-3. Enter <password> into input password on Login page
-4. Click on button Sign In on Login page
+
+1. Open the home page: `https://www.underarmour.com/en-us/`.
+2. Close the cookie banner (if it appears).
+3. Click the Log In button in the header.
+4. On the login page, enter the email address from `TestData.EMAIL_FOR_LOGIN`.
+5. Enter the password from `TestData.PASSWORD_FOR_LOGIN`.
+6. Click Log In / Sign In.
+7. Wait for the authorization to complete and be redirected to the main page.
 
 Expected Result:
-1. Redirect to the Home page
-2. The name of Login button in the header changes to "My Account"
 
-Post condition:
-Sign Out user (if logged in)
+1. The user is redirected to the home page.
+2. The My Account button/menu (or a similar indicator of successful login) is displayed in the header.
+
+Postcondition:
+
+1. Log out of the account.
+2. If a discount pop-up appears after logging out, wait for it to close.
+3. Check that the Log In button is displayed on the home page.
 
 
-#03 User is able to successfully logout
+
+#05 Add Men’s Swimwear product to cart from category page
 
 Preconditions:
-1. User is logged in
+
+* The user is not logged in.
+* The cookies banner may appear.
 
 Steps:
-1. Click on the "Account" button in the header
-2. Click on the "Sign Out" button in the dropdown menu
+
+1. Open `https://www.underarmour.com/en-us/`.
+2. Close the cookies banner (if it appears).
+3. Click Men in the header.
+4. Make sure that you are redirected to the Men’s page and that all key header elements are visible.
+5. Click Swimwear in the categories section.
+6. Make sure you are on the Men’s Swimwear page (check the URL, title/breadcrumbs).
+7. Click on the first visible product in the list.
+8. Make sure that the Product Detail Page (PDP) has opened: the product name, gallery, and price are visible.
+9. Click Add to Bag.
+10. Wait for the Added to Bag pop-up (or equivalent confirmation) to appear.
+11. In the pop-up, click View Bag / View Cart.
+12. Make sure that the cart page opens and contains exactly 1 item.
+13. Make sure that the header elements are visible on the cart page (logo/Home, search, favorites, cart, etc.).
 
 Expected Result:
-1. User is redirected to the Home page and logged out
+
+1. A sequential redirect occurs: Home → Men → Men’s Swimwear → PDP → Cart.
+2. The pop-up appears after adding to the cart; the View Bag button works.
+3. The Cart page displays 1 item, the correct name/price, and available header elements for further navigation.
+
+Postcondition:
+
+* Return to the home page (Home icon in the header).
+* If a discount pop-up appears after returning, wait for it and close it.
+* Make sure that the Log In button is visible on the home page.
 
 
-#04 User is able to search for a product
+
+#06 Search: zero-state appears and redirect to Search Results
+
 Preconditions:
-1. User is logged in or as a guest
-2. Product exists
+
+* The user is not logged in.
+* The cookies banner may appear.
+* Search is available on the home page (icon/field in the header).
 
 Steps:
-1. Open home page https://www.underarmour.com/en-us
-3. Input <productName> into search input
-4. Click on "See All Results" button
 
-Expected Result:
-1. Search bar is displayed
-2. User is able to input text into the search bar
-3. Search bar is changed after inputting text
-4. User is redirected to the Search Results page
-
-
-
-#05 User is able to add item to the cart item after searching for it
-
-Preconditions:
-1. User is logged in or as a guest
-2. Product gloves exists and is purchasable.
-
-Steps:
-1. Open home page https://www.underarmour.com/en-us
-2. Use search to find <productName>
-3. pen first product on Search Results page
-4. On PDP select size <size> (and color <color> if applicable)
-5. Click Add to Cart
+1. Open `https://www.underarmour.com/en-us/`.
+2. Close the cookies banner (if it appears).
+3. Make sure that the redirect to the home page is performed.
+4. Click on the search field in the header.
+5. Check the zero-state search: popular sections (6 links) and popular products (6 cards) are displayed.
+6. [Optional] Enter a specific query (for example, `UA Expanse`) and confirm (Enter / search icon).
 
 Expected Result:
 
+1. After clicking on the search, a zero-state panel with popular sections/products appears.
+2. Optional: Redirect to the search results page (URL contains /search/ or the q parameter), the results grid and filter panel are displayed.
 
+Postcondition:
+
+* Return to the home page (click on the logo/Home icon) and check the redirect to the home page.

@@ -23,7 +23,7 @@ public class MensSwimwearPage extends ParentPage{
     private WebElement mensSwimwearPageHeader;
 
     @FindBy (xpath = "//a[contains(@class,'ProductTile_product-item-link__tSc19')]")
-    private List<WebElement> productsTitleOneMensPage;
+    public List<WebElement> productsTitleOneMensPage;
 
 
     public MensSwimwearPage(WebDriver webDriver){
@@ -49,7 +49,7 @@ public class MensSwimwearPage extends ParentPage{
 
 
     public MensSwimwearPage checkIsRedirectToMensSwimwearPage() {
-        waitABit(1);
+        waitABit(2);
         checkUrl();
         isBreadcrumbOnPageDisplayed(menBreadcrumb, swimwearBreadcrumb);
         checkTextInElement(mensSwimwearPageHeader, "Men's Swimsuits");

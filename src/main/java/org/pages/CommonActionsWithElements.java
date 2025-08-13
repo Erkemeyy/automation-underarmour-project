@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.utils.ConfigProvider;
 
+
 import java.time.Duration;
 import java.util.List;
 
@@ -76,6 +77,14 @@ public class CommonActionsWithElements {
         String actualText = webElement.getText();
         Assert.assertEquals("Text in element does not match expected text", expectedText, actualText);
         logger.info("Text in element matches expected text: " + expectedText);
+    }
+
+
+    protected void checkTextInElementWithMultipleRaws(WebElement webElement, String expectedText ){
+        String actualText = webElement.getText();
+        Assert.assertTrue("Element is not displayed: " + actualText, actualText.contains(expectedText));
+        logger.info("The product name " + expectedText + " displayed as expected");
+
     }
 
     protected boolean isElementDisplayed(WebElement webElement) {
@@ -147,4 +156,9 @@ public class CommonActionsWithElements {
         return itemCount;
     }
 
+    public void checkProductsOnPage(List<WebElement> haloProducts) {
+        Assert.assertFalse("No products found on the Halo Collection page.", haloProducts.isEmpty());
+    }
+
 }
+
