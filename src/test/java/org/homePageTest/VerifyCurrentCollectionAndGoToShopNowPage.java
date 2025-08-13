@@ -8,7 +8,7 @@ import org.junit.Test;
 public class VerifyCurrentCollectionAndGoToShopNowPage extends BaseTest {
     Logger logger = Logger.getLogger(getClass());
     @Test
-    public void newCollectionTest(){
+    public void testHaloPage(){
         pageProvider.getHomePage()
                 .openHomePageAndCloseCookiesBanner()
                 .checkIsRedirectToHomePage()

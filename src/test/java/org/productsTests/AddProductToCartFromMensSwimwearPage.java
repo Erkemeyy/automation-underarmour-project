@@ -8,7 +8,7 @@ import org.junit.Test;
 public class AddProductToCartFromMensSwimwearPage extends BaseTest {
     Logger logger = Logger.getLogger(getClass());
     @Test
-    public void testProduct() {
+    public void testAddProductToCart() {
         pageProvider.getHomePage().openHomePageAndCloseCookiesBanner()
                     .getHeaderElements().clickOnButtonMenSection()
                     .checkIsRedirectToMensPage()

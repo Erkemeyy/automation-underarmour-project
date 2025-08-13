@@ -8,7 +8,7 @@ import org.junit.Test;
 public class DiscountPopUpOnMensPageApplyTest extends BaseTest {
     Logger logger = Logger.getLogger(getClass());
     @Test
-    public void testMensProductsCount() {
+    public void testDiscountPopUp() {
         pageProvider.getHomePage()
                 .openHomePageAndCloseCookiesBanner()
                 .getHeaderElements().clickOnButtonMenSection()
