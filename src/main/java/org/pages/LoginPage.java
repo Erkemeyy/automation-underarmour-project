@@ -81,12 +81,12 @@ public class LoginPage extends ParentPage {
                     "/oauth2/default/v1/authorize", uri.getPath());
             logger.info("Path is correct: " + uri.getPath());
 
-            // Розпарсити query у мапу
+
             Map<String, String> q = Arrays.stream(uri.getQuery().split("&"))
                     .map(s -> s.split("=", 2))
                     .collect(Collectors.toMap(a -> a[0], a -> a.length > 1 ? a[1] : ""));
 
-            // Обов’язкові параметри
+
             Assert.assertTrue("Missing client_id", q.containsKey("client_id"));
             logger.info("client_id found: " + q.get("client_id"));
 

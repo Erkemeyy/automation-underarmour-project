@@ -41,7 +41,7 @@ public class AddToBagPopUp extends CommonActionsWithElements {
         checkIsElementDisplayed(productSizeOnAddToBagPopUp);
         checkIsElementDisplayed(viewBagButtonOnAddToBagPopUp);
         checkIsElementDisplayed(viewContinueShoppingOnAddToBagPopUp);
-        //checkTextInElement(productPriceOnAddToBagPopUp, "$65"); тут можна було б зробити на перевірку очікуваної ціни але ціна не знаходиться в середині дом тега і його нереально дістати
+        //checkTextInElement(productPriceOnAddToBagPopUp, "$65"); тут можна було б зробити перевірку очікуваної ціни але ціна не знаходиться в середині дом тега і його нереально дістати
 
         return this;
     }
