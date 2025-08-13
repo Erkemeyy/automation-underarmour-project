@@ -2,6 +2,7 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -116,6 +117,34 @@ public class CommonActionsWithElements {
                     element.isDisplayed());
             logger.info(element.getText() + " is displayed");
         }
+    }
+
+    public void isBreadcrumbOnPageDisplayed(WebElement webElementOne, WebElement webElementTwo) {
+        Assert.assertEquals("Men breadcrumb text mismatch", "Men", webElementOne.getText());
+        Assert.assertEquals("Men breadcrumb link mismatch", "/en-us/c/mens/", webElementOne.getAttribute("href").replace("https://www.underarmour.com", ""));
+        Assert.assertEquals("Swimwear breadcrumb text mismatch", "Swimwear", webElementTwo.getText());
+        logger.info("Breadcrumbs are displayed");
+    }
+
+
+    public void checkNumberOfProductsOnPage(List<WebElement> webElement) {
+        int nuberOfProductsOnpage = 1;
+        int expectedProducts =  turnStringElementIntoNumber();
+        for(WebElement el : webElement){
+            nuberOfProductsOnpage++;
+        }
+        Assert.assertEquals("Number of products on page:" + nuberOfProductsOnpage + "don't match the element", nuberOfProductsOnpage,expectedProducts);
+        logger.info("The number of products on page: " + nuberOfProductsOnpage + " is match expected result: " + expectedProducts);
+
+
+    }
+
+    private int turnStringElementIntoNumber(){
+
+        String text = webDriver.findElement(By.xpath("//p[contains(@class,'text-body')]")).getText();
+        String numberOnly = text.replaceAll("[^0-9]", "");
+        int itemCount = Integer.parseInt(numberOnly);
+        return itemCount;
     }
 
 }

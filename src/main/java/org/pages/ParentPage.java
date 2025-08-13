@@ -35,11 +35,4 @@ public abstract class ParentPage extends CommonActionsWithElements {
         );
     }
 
-//    protected void checkUrlForLoginPage() {
-//        Assert.assertEquals("URL is not expected"
-//                , loginURL + getRelativeURL()
-//                , webDriver.getCurrentUrl()
-//        );
-//    }
-
 }

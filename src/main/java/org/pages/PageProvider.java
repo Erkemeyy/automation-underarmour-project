@@ -21,6 +21,14 @@ public class PageProvider {
         return new SearchResultsPage(webDriver);
     }
 
+    public MensSwimwearPage getMensSwimwearPage(){
+        return new MensSwimwearPage(webDriver);
+    }
+
+    public ProductDetailPage getProductDetailPage(){
+        return new ProductDetailPage(webDriver);
+    }
+
 
 
 

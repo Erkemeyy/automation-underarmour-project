@@ -16,10 +16,10 @@ public class MensPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
     @FindBy(xpath = "//li[text()='Men']")
-    private WebElement mensHeaderOne;
+    private WebElement mensPageBreadcrumbs;
 
     @FindBy(xpath = "//h1[text()=\"Men's\"]")
-    private WebElement mensHeaderTwo;
+    private WebElement mensPageHeader;
 
     @FindBy(xpath ="//div[contains(@class,'swiper-slide swiper-slide-visible swiper-slide-fully-visible')]")
     private List<WebElement> productCarouselItems;
@@ -37,7 +37,7 @@ public class MensPage extends ParentPage {
     private List<WebElement> productTitles;
 
     @FindBy(xpath = "//section[@id='category-list']//a[@class='text-body font-semibold']")
-    private List<WebElement> mensPageCategoryList;
+    public List<WebElement> mensPageCategoryList;
 
     public MensPage(WebDriver webDriver) {
         super(webDriver);
@@ -58,8 +58,8 @@ public class MensPage extends ParentPage {
     public MensPage checkIsRedirectToMensPage(){
         //waitABit(1);
         checkUrl();
-        checkTextInElement(mensHeaderOne, "Men");
-        checkTextInElement(mensHeaderTwo, "Men's");
+        checkIsElementDisplayed(mensPageBreadcrumbs);
+        checkTextInElement(mensPageHeader, "Men's");
         for (WebElement element : productCarouselItems) {
 
             if (!element.isDisplayed()) {
