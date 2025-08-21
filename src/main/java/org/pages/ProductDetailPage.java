@@ -62,7 +62,7 @@ public class ProductDetailPage extends ParentPage{
 
     @Override
     public String getRelativeURL() {
-        return "en-us/p/swimwear/ua_expanse_mens_2-in-1_boardshorts/1370030.html?dwvar_1370030_color=001";
+        return "en-us/p/swimwear/ua_expanse_mens_2-in-1_5_boardshorts/1390049.html?dwvar_1390049_color=044";
     }
 
     public ProductDetailPage checkIsRedirectToProductDetailPage(){

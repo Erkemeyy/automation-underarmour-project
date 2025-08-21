@@ -20,7 +20,7 @@ public class VerifyCurrentCollectionAndGoToShopNowPage extends BaseTest {
 
     @After
     public void backToHomePage(){
-        logger.info("Post condition - log out from account");
+        logger.info("Back to home page");
         pageProvider.getHaloPage()
                     .getHeaderElements().clickOnHomePageIcon()
                     .getDiscountPopUp().waitAndCloseDiscountPopUpAfterLogout()

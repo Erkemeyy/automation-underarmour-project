@@ -18,7 +18,7 @@ public class DiscountPopUpOnMensPageApplyTest extends BaseTest {
 
     @After
     public void backToHomePage(){
-        logger.info("Post condition - log out from account");
+        logger.info("Back to home page");
         pageProvider.getMensPage()
                 .getHeaderElements().clickOnHomePageIcon()
                 .getDiscountPopUp().waitAndCloseDiscountPopUpAfterLogout()

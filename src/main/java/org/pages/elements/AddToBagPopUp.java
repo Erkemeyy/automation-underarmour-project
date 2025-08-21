@@ -37,7 +37,7 @@ public class AddToBagPopUp extends CommonActionsWithElements {
     public AddToBagPopUp checkIsAddToBagPopUpAppeared() {
         checkTextInElementWithMultipleRaws(addToBagPopUpTitle, "Item Added To Bag");
         checkTextInElement(productTitleOnAddToBagPopUp, "UA Expanse");
-        checkTextInElement(productSubTitleOnAddToBagPopUp, "Men's 2-in-1 Boardshorts");
+        checkTextInElement(productSubTitleOnAddToBagPopUp, "Men's 2-in-1 5\" Boardshorts");
         checkIsElementDisplayed(productSizeOnAddToBagPopUp);
         checkIsElementDisplayed(viewBagButtonOnAddToBagPopUp);
         checkIsElementDisplayed(viewContinueShoppingOnAddToBagPopUp);

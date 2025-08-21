@@ -16,7 +16,8 @@ import static org.utils.Utils_Custom.waitABit;
 public class HeaderElements extends CommonActionsWithElements{
     private Logger logger = Logger.getLogger(getClass());
 
-    @FindBy(xpath = "//a[@href='/en-us/c/mens/']")
+
+    @FindBy(xpath = "//a[@data-testid='nav-link-men']")
     private WebElement buttonMenSection;
 
     @FindBy(xpath = "//li[@class='Navigation_nav__list-item__8TwC0 undefined']")

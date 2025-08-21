@@ -137,7 +137,7 @@ public class CommonActionsWithElements {
 
 
     public void checkNumberOfProductsOnPage(List<WebElement> webElement) {
-        int nuberOfProductsOnpage = 1;
+        int nuberOfProductsOnpage = 0;
         int expectedProducts =  turnStringElementIntoNumber();
         for(WebElement el : webElement){
             nuberOfProductsOnpage++;
